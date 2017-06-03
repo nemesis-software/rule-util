@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ nemesis Platform - NExt-generation Multichannel E-commerce SYStem
+  ~
+  ~ Copyright (c) 2010 - 2013 nemesis
+  ~ All rights reserved.
+  ~
+  ~ This software is the confidential and proprietary information of nemesis
+  ~ ("Confidential Information"). You shall not disclose such Confidential
+  ~ Information and shall use it only in accordance with the terms of the
+  ~ license agreement you entered into with nemesis.
+  -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.nemesis.util</groupId>
+        <artifactId>nemesis-rule-util</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    <artifactId>nemesis-rules-targeting</artifactId>
+    <packaging>kjar</packaging>
+
+    <name>Nemesis Rule Utils</name>
+    <url>http://docs.nemesis.io/util/rule</url>
+
+    <properties>
+        <drools.version>6.5.0.Final</drools.version>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>com.rabbitmq</groupId>
+            <artifactId>amqp-client</artifactId>
+            <version>4.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.kie</groupId>
+            <artifactId>kie-api</artifactId>
+            <version>${drools.version}</version>
+        </dependency>
+    </dependencies>
+    <repositories>
+        <repository>
+            <id>nemesis-repository-releases</id>
+            <name>nemesis-repository-releases</name>
+            <url>https://repository.nemesis.io/artifactory/libs-release</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+        <repository>
+            <id>nemesis-repository-snapshots</id>
+            <name>nemesis-repository-snapshots</name>
+            <url>https://repository.nemesis.io/artifactory/libs-snapshot</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </repository>
+        <repository>
+            <id>guvnor-m2-repo</id>
+            <name>Guvnor M2 Repo</name>
+            <url>http://localhost:8080/drools-wb/maven2/</url>
+        </repository>
+    </repositories>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.kie</groupId>
+                <artifactId>kie-maven-plugin</artifactId>
+                <version>${drools.version}</version>
+                <extensions>true</extensions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
