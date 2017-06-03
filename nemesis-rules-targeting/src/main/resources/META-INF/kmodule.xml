@@ -1,5 +1,5 @@
 <kmodule xmlns="http://jboss.org/kie/6.0.0/kmodule">
-    <kbase name="defaultConfiguration" default="true" eventProcessingMode="stream" equalsBehavior="identity">
+    <kbase name="defaultKieBase" default="true" eventProcessingMode="stream" equalsBehavior="identity">
         <ksession name="defaultKieSession" type="stateful" default="true" clockType="realtime"/>
     </kbase>
 </kmodule>
