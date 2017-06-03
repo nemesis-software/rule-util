@@ -21,9 +21,7 @@ public class SenderUtil {
      */
     public static void sendToQueue(Object object, String queueName) throws Exception {
         ConnectionFactory factory = new ConnectionFactory();
-        factory.setHost("localhost");
-        factory.setUsername("guest");
-        factory.setPassword("guest");
+        factory.setHost("172.17.0.1");
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
 
