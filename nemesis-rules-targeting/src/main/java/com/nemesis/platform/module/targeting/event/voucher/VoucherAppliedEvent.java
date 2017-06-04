@@ -9,6 +9,10 @@ import com.nemesis.platform.module.targeting.event.AbstractEvent;
  * @since 1.5
  */
 public class VoucherAppliedEvent extends AbstractEvent {
+
+    public VoucherAppliedEvent() {
+    }
+
     public VoucherAppliedEvent(String sessionId, String username) {
         super(sessionId, username);
     }

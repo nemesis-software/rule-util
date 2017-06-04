@@ -16,18 +16,29 @@ public abstract class AbstractEvent implements Serializable {
     @org.kie.api.definition.type.Label(value = "Username")
     private String username;
 
+    public AbstractEvent() {
+    }
+
     public AbstractEvent(String sessionId, String username) {
         this.sessionId = sessionId;
         this.username = username;
     }
 
-    /* getters */
+    /* getters/setters */
 
     public String getSessionId() {
         return sessionId;
     }
 
+    public void setSessionId(String sessionId) {
+        this.sessionId = sessionId;
+    }
+
     public String getUsername() {
         return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

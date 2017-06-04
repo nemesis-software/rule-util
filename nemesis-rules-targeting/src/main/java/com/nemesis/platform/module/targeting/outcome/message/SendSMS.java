@@ -9,6 +9,10 @@ import com.nemesis.platform.module.targeting.outcome.AbstractOutcome;
  * @since 1.5
  */
 public class SendSMS extends AbstractOutcome {
+
+    public SendSMS() {
+    }
+
     public SendSMS(String sessionId, String username) {
         super(sessionId, username);
     }

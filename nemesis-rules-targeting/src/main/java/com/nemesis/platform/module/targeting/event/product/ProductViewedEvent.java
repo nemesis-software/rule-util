@@ -11,6 +11,9 @@ public class ProductViewedEvent extends AbstractProductEvent {
     @org.kie.api.definition.type.Label(value = "Category Codes")
     private String[] categoryCodes;
 
+    public ProductViewedEvent() {
+    }
+
     public ProductViewedEvent(String sessionId, String username, String productCode, String[] categoryCodes) {
         super(sessionId, username, productCode);
         this.categoryCodes = categoryCodes;
@@ -18,5 +21,9 @@ public class ProductViewedEvent extends AbstractProductEvent {
 
     public String[] getCategoryCodes() {
         return categoryCodes;
+    }
+
+    public void setCategoryCodes(String[] categoryCodes) {
+        this.categoryCodes = categoryCodes;
     }
 }

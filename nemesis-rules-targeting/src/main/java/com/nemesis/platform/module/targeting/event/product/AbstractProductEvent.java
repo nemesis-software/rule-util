@@ -13,6 +13,9 @@ public class AbstractProductEvent extends AbstractEvent {
     @org.kie.api.definition.type.Label(value = "Product Code")
     private String productCode;
 
+    public AbstractProductEvent() {
+    }
+
     public AbstractProductEvent(String sessionId, String username, String productCode) {
         super(sessionId, username);
         this.productCode = productCode;
@@ -20,5 +23,9 @@ public class AbstractProductEvent extends AbstractEvent {
 
     public String getProductCode() {
         return productCode;
+    }
+
+    public void setProductCode(String productCode) {
+        this.productCode = productCode;
     }
 }

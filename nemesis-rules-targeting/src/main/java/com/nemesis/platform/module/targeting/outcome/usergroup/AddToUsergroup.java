@@ -8,6 +8,9 @@ package com.nemesis.platform.module.targeting.outcome.usergroup;
  */
 public class AddToUsergroup extends AbstractUsergroup {
 
+    public AddToUsergroup() {
+    }
+
     public AddToUsergroup(String sessionId, String username, String usergroup) {
         super(sessionId, username, usergroup);
     }

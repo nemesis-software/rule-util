@@ -15,6 +15,9 @@ public class SearchPerformedEvent extends AbstractEvent {
     @org.kie.api.definition.type.Label(value = "Search Term")
     private String searchTerm;
 
+    public SearchPerformedEvent() {
+    }
+
     public SearchPerformedEvent(String sessionId, String username, String searchTerm) {
         super(sessionId, username);
         this.searchTerm = searchTerm;
@@ -22,5 +25,9 @@ public class SearchPerformedEvent extends AbstractEvent {
 
     public String getSearchTerm() {
         return searchTerm;
+    }
+
+    public void setSearchTerm(String searchTerm) {
+        this.searchTerm = searchTerm;
     }
 }

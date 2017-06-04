@@ -20,17 +20,30 @@ public class CategoryViewedEvent extends AbstractEvent {
     @org.kie.api.definition.type.Label(value = "Supercaategories")
     private String[] superCategories;
 
+    public CategoryViewedEvent() {
+    }
+
     public CategoryViewedEvent(String sessionId, String username, String categoryCode, String[] superCategories) {
         super(sessionId, username);
         this.categoryCode = categoryCode;
         this.superCategories = superCategories;
     }
 
+    /* getters/setters */
+
     public String getCategoryCode() {
         return categoryCode;
     }
 
+    public void setCategoryCode(String categoryCode) {
+        this.categoryCode = categoryCode;
+    }
+
     public String[] getSuperCategories() {
         return superCategories;
+    }
+
+    public void setSuperCategories(String[] superCategories) {
+        this.superCategories = superCategories;
     }
 }

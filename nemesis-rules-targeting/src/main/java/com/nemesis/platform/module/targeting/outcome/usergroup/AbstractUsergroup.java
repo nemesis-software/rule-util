@@ -13,6 +13,9 @@ public abstract class AbstractUsergroup extends AbstractOutcome {
     @org.kie.api.definition.type.Label(value = "Usergroup")
     private String usergroup;
 
+    public AbstractUsergroup() {
+    }
+
     public AbstractUsergroup(String sessionId, String username, String usergroup) {
         super(sessionId, username);
         this.usergroup = usergroup;

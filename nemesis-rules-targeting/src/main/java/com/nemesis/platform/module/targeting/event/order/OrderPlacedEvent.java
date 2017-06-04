@@ -17,6 +17,9 @@ public class OrderPlacedEvent extends AbstractEvent {
     @org.kie.api.definition.type.Label(value = "Total")
     private BigDecimal total;
 
+    public OrderPlacedEvent() {
+    }
+
     public OrderPlacedEvent(String sessionId, String username, BigDecimal total) {
         super(sessionId, username);
         this.total = total;
@@ -24,5 +27,9 @@ public class OrderPlacedEvent extends AbstractEvent {
 
     public BigDecimal getTotal() {
         return total;
+    }
+
+    public void setTotal(BigDecimal total) {
+        this.total = total;
     }
 }

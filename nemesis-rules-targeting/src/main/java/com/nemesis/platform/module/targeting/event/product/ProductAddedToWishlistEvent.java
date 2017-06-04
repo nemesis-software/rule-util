@@ -7,6 +7,10 @@ package com.nemesis.platform.module.targeting.event.product;
  * @since 1.5
  */
 public class ProductAddedToWishlistEvent extends AbstractProductEvent {
+
+    public ProductAddedToWishlistEvent() {
+    }
+
     public ProductAddedToWishlistEvent(String sessionId, String username, String productCode) {
         super(sessionId, username, productCode);
     }

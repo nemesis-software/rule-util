@@ -11,6 +11,9 @@ public class ProductAddedToCartEvent extends AbstractProductEvent {
     @org.kie.api.definition.type.Label(value = "Quantity")
     private int quantity;
 
+    public ProductAddedToCartEvent() {
+    }
+
     public ProductAddedToCartEvent(String sessionId, String username, String productCode, int quantity) {
         super(sessionId, username, productCode);
         this.quantity = quantity;
@@ -18,5 +21,9 @@ public class ProductAddedToCartEvent extends AbstractProductEvent {
 
     public int getQuantity() {
         return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }

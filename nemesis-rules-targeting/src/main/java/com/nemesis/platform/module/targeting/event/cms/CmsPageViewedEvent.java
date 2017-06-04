@@ -15,6 +15,9 @@ public class CmsPageViewedEvent extends AbstractEvent {
     @org.kie.api.definition.type.Label(value = "Url")
     private String url;
 
+    public CmsPageViewedEvent() {
+    }
+
     public CmsPageViewedEvent(String sessionId, String username, String url) {
         super(sessionId, username);
         this.url = url;
@@ -22,5 +25,9 @@ public class CmsPageViewedEvent extends AbstractEvent {
 
     public String getUrl() {
         return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }
