@@ -8,7 +8,7 @@ import com.nemesis.platform.module.targeting.event.cms.CmsPageViewedEvent;
 import com.nemesis.platform.module.targeting.outcome.usergroup.AddToUsergroup;
 import com.nemesis.platform.module.targeting.outcome.usergroup.RemoveFromUsergroup;
 
-rule "Customer has a boy child if he/she visits > 5 boy-related pages during last 180 sec."
+rule "guided Customer has a boy child if he/she visits > 5 boy-related pages during last 180 sec."
 when
     CategoryViewedEvent($sessionId : sessionId, $username : username)
     Number($d : doubleValue > 5)
@@ -23,7 +23,7 @@ then
     SenderUtil.sendToQueue(new AddToUsergroup($sessionId, $username, 'hasaboycustomergroup'), "targeting");
 end
 
-rule "Customer is premium if his average purchase in the last month is > 200$ and is from Bulgaria and visited the promo page"
+rule "guided Customer is premium if his average purchase in the last month is > 200$ and is from Bulgaria and visited the promo page"
 when
     OrderPlacedEvent($sessionId : sessionId, $username : username)
     CmsPageViewedEvent(username == $username, url == '/promo')
@@ -40,7 +40,7 @@ then
     SenderUtil.sendToQueue(new AddToUsergroup($sessionId, $username, 'premiumcustomergroup'), "targeting");
 end
 
-rule "Customer is not premium if his average purchase in the last month is < 200$ and is from Bulgaria and visited the promo page"
+rule "guided Customer is not premium if his average purchase in the last month is < 200$ and is from Bulgaria and visited the promo page"
 when
     OrderPlacedEvent($sessionId : sessionId, $username : username)
     CmsPageViewedEvent(username == $username, url == '/promo')
