@@ -19,7 +19,7 @@ public class SenderUtil {
     /**
      * Send the given outcome to a queue with the given name.
      *
-     * @param outcome     the outcome to send.
+     * @param outcome   the outcome to send.
      * @param queueName the name of the queue to which we send the outcome.
      * @throws Exception
      */
@@ -32,7 +32,8 @@ public class SenderUtil {
         Channel channel = connection.createChannel();
 
         byte[] data = SerializationUtils.serialize(outcome);
-        AMQP.BasicProperties props = new AMQP.BasicProperties.Builder().deliveryMode(2).priority(0).type(outcome.getClass().getCanonicalName()).build();
+        AMQP.BasicProperties props = new AMQP.BasicProperties.Builder().deliveryMode(2).priority(0).type(outcome.getClass().getCanonicalName()).contentType(
+                        "application/x-java-serialized-object").build();
 
         channel.queueDeclare(queueName, false, false, false, null);
         channel.basicPublish("", queueName, props, data);
