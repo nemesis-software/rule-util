@@ -1,5 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+~ nemesis Platform - NExt-generation Multichannel E-commerce SYStem
+~
+~ Copyright (c) 2010 - 2013 nemesis
+~ All rights reserved.
+~
+~ This software is the confidential and proprietary information of nemesis
+~ ("Confidential Information"). You shall not disclose such Confidential
+~ Information and shall use it only in accordance with the terms of the
+~ license agreement you entered into with nemesis.
+-->
 <kmodule xmlns="http://jboss.org/kie/6.0.0/kmodule">
-    <kbase name="defaultKieBase" default="true" eventProcessingMode="stream" equalsBehavior="identity">
-        <ksession name="defaultKieSession" type="stateful" default="true" clockType="realtime"/>
+    <kbase name="targetingKieBase" default="true" eventProcessingMode="stream" equalsBehavior="identity">
+        <ksession name="targetingKieSession" type="stateful" default="true" clockType="realtime"/>
     </kbase>
 </kmodule>

@@ -14,15 +14,26 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.nemesis.util</groupId>
-    <artifactId>nemesis-rule-util</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <parent>
+        <groupId>com.nemesis</groupId>
+        <artifactId>bom</artifactId>
+        <version>1.5.2.BUILD-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>rules</artifactId>
     <packaging>pom</packaging>
 
-    <name>Nemesis Rule Utils</name>
-    <url>http://docs.nemesis.io/util/rule</url>
+    <name>Nemesis Rules</name>
+    <url>http://docs.nemesis.io/rules/</url>
 
     <modules>
         <module>nemesis-rules-targeting</module>
     </modules>
+
+    <properties>
+        <maven-pmd-plugin.skip>true</maven-pmd-plugin.skip>
+        <maven.remote.resources.plugin.skip>true</maven.remote.resources.plugin.skip>
+        <proguard.maven.plugin.skip>true</proguard.maven.plugin.skip>
+        <maven-findbugs-plugin.skip>true</maven-findbugs-plugin.skip>
+    </properties>
 </project>

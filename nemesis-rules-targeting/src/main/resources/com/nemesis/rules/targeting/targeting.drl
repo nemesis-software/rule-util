@@ -1,0 +1,63 @@
+package com.nemesis.rules.targeting;
+
+import com.nemesis.rules.targeting.event.category.CategoryViewedEvent;
+import com.nemesis.rules.targeting.event.order.OrderPlacedEvent;
+import com.nemesis.rules.targeting.event.address.AddressUpdatedEvent;
+import com.nemesis.rules.targeting.event.cms.CmsPageViewedEvent;
+import com.nemesis.rules.targeting.event.customer.CustomerLoggedInEvent;
+
+import com.nemesis.rules.targeting.outcome.usergroup.AddToUsergroup;
+import com.nemesis.rules.targeting.outcome.usergroup.RemoveFromUsergroup;
+
+rule "Customer has a boy child if he/she visits > 5 boy-related pages during last 180 sec."
+when
+    CustomerLoggedInEvent($sessionId : sessionId)
+    CategoryViewedEvent(sessionId == $sessionId, $username : username)
+    not AddToUsergroup(sessionId == $sessionId, usergroup == 'hasaboycustomergroup')
+    Number($d : doubleValue > 5)
+    from
+        accumulate(
+            CategoryViewedEvent(sessionId == $sessionId, categoryCode == 'boys' || superCategories contains 'boys')
+            over window:time(3m),
+            count(1))
+then
+    System.out.println("the customer " + $sessionId + " has a boy because he visited " + $d + " times boy-related pages within last 180 seconds.");
+    System.out.println("SENDING....");
+    AddToUsergroup addToUsergroup = new AddToUsergroup($sessionId, $username, 'hasaboycustomergroup');
+    insert(addToUsergroup);
+    SenderUtil.sendToQueue(addToUsergroup, "targeting");
+end
+
+rule "Customer is premium if his average purchase in the last month is > 200$ and is from Bulgaria and visited the promo page"
+when
+    OrderPlacedEvent($sessionId : sessionId, $username : username)
+    CmsPageViewedEvent(username == $username, url == '/promo')
+    AddressUpdatedEvent(username == $username, countryCode == 'bg')
+    Number($d : doubleValue > 200)
+    from
+        accumulate(
+            OrderPlacedEvent(username == $username)
+            over window:time(30d),
+            average(1))
+then
+    System.out.println("the customer " + $username + " is premium because his average purchase for the last month is " + $d + " and is from Bulgaria and visited the promo page");
+    System.out.println("SENDING....");
+    SenderUtil.sendToQueue(new AddToUsergroup($sessionId, $username, 'premiumcustomergroup'), "targeting");
+end
+
+rule "Customer is not premium if his average purchase in the last month is < 200$ and is from Bulgaria and visited the promo page"
+when
+    OrderPlacedEvent($sessionId : sessionId, $username : username)
+    CmsPageViewedEvent(username == $username, url == '/promo')
+    AddressUpdatedEvent(username == $username, countryCode == 'bg')
+    Number($d : doubleValue < 200)
+    from
+        accumulate(
+            OrderPlacedEvent(username == $username)
+            over window:time(30d),
+            average(1))
+then
+    System.out.println("the customer " + $username + " is not premium because his average purchase for the last month is " + $d + " and is from Bulgaria and visited the promo page");
+    System.out.println("SENDING....");
+    SenderUtil.sendToQueue(new RemoveFromUsergroup($sessionId, $username, 'premiumcustomergroup'), "targeting");
+end
