@@ -16,6 +16,8 @@ import com.nemesis.rules.targeting.event.AbstractEvent;
 import org.kie.api.definition.type.Expires;
 import org.kie.api.definition.type.Role;
 
+import java.util.List;
+
 /**
  * An event that is raised once a user views certain category.
  *
@@ -30,12 +32,12 @@ public class CategoryViewedEvent extends AbstractEvent {
     private String categoryCode;
 
     @org.kie.api.definition.type.Label(value = "Supercaategories")
-    private String[] superCategories;
+    private List<String> superCategories;
 
     public CategoryViewedEvent() {
     }
 
-    public CategoryViewedEvent(String sessionId, String username, String categoryCode, String[] superCategories) {
+    public CategoryViewedEvent(String sessionId, String username, String categoryCode, List<String> superCategories) {
         super(sessionId, username);
         this.categoryCode = categoryCode;
         this.superCategories = superCategories;
@@ -51,11 +53,11 @@ public class CategoryViewedEvent extends AbstractEvent {
         this.categoryCode = categoryCode;
     }
 
-    public String[] getSuperCategories() {
+    public List<String> getSuperCategories() {
         return superCategories;
     }
 
-    public void setSuperCategories(String[] superCategories) {
+    public void setSuperCategories(List<String> superCategories) {
         this.superCategories = superCategories;
     }
 }

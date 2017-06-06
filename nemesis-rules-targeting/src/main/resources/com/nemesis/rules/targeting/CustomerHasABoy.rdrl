@@ -1,0 +1,22 @@
+package com.nemesis.rules.targeting;
+
+import java.lang.Number;
+import com.nemesis.rules.targeting.event.customer.CustomerLoggedInEvent;
+import com.nemesis.rules.targeting.event.category.CategoryViewedEvent;
+import com.nemesis.rules.targeting.outcome.usergroup.AddToUsergroup;
+
+rule "Customer has a boy child if he/she visits > 5 boy-related pages during last 180 sec."
+	dialect "mvel"
+	when
+		CustomerLoggedInEvent( $username : username != "anonymous" )
+		CategoryViewedEvent( $sessionId : sessionId, username == $username )
+		not (AddToUsergroup( sessionId == $sessionId , username == $username , usergroup == "hasaboycustomergroup" ))
+		Number( $d : doubleValue() > 5 ) from accumulate ( CategoryViewedEvent( sessionId == $sessionId , username == $username , categoryCode == "boys" || superCategories contains "boys" ) over window:time (3m),
+			count(1))
+    then
+        System.out.println("the customer " + $username + " has a boy because he visited " + $d + " times boy-related pages within last 180 seconds.");
+        System.out.println("SENDING....");
+        AddToUsergroup addToUsergroup = new AddToUsergroup($sessionId, $username, 'hasaboycustomergroup');
+        insert(addToUsergroup);
+        SenderUtil.sendToQueue(addToUsergroup, "targeting");
+end
