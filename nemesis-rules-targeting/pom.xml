@@ -23,6 +23,7 @@
 
     <groupId>com.nemesis.rules</groupId>
     <artifactId>nemesis-rules-targeting</artifactId>
+    <version>1.5.2-SNAPSHOT</version>
     <packaging>kjar</packaging>
 
     <name>Nemesis Targeting Rules</name>
