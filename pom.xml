@@ -31,16 +31,4 @@
         <proguard.maven.plugin.skip>true</proguard.maven.plugin.skip>
         <maven-findbugs-plugin.skip>true</maven-findbugs-plugin.skip>
     </properties>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>com.nemesis</groupId>
-                <artifactId>bom</artifactId>
-                <version>1.5.2.BUILD-SNAPSHOT</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 </project>
