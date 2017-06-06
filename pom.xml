@@ -19,8 +19,8 @@
         <artifactId>bom</artifactId>
         <version>1.5.2.BUILD-SNAPSHOT</version>
     </parent>
-
     <artifactId>rules</artifactId>
+    <version>1.5.2-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Nemesis Rules</name>
