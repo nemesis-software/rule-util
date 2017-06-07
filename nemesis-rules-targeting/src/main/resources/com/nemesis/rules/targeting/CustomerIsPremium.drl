@@ -9,36 +9,37 @@ import com.nemesis.rules.targeting.event.customer.CustomerLoggedInEvent;
 import com.nemesis.rules.targeting.outcome.usergroup.AddToUsergroup;
 import com.nemesis.rules.targeting.outcome.usergroup.RemoveFromUsergroup;
 
-rule "Customer is premium if his average purchase in the last month is > 200$ and is from Bulgaria and visited the promo page"
+rule "Customer is premium if his average purchase in the last month is > 70$ and is from Bulgaria and visited the careers page"
 when
     OrderPlacedEvent($sessionId : sessionId, $username : username)
-    CmsPageViewedEvent(username == $username, url == '/promo')
+    CmsPageViewedEvent(username == $username, url == '/about/careers')
     AddressUpdatedEvent(username == $username, countryCode == 'bg')
-    Number($d : doubleValue > 200)
+    Number($d : doubleValue > 70)
     from
         accumulate(
-            OrderPlacedEvent(username == $username)
+            OrderPlacedEvent(username == $username, $total : total)
             over window:time(30d),
-            average(1))
+            average($total))
 then
-    System.out.println("the customer " + $username + " is premium because his average purchase for the last month is " + $d + " and is from Bulgaria and visited the promo page");
+    System.out.println("the customer " + $username + " is premium because his average purchase for the last month is " + $d + " and is from Bulgaria and visited the careers page");
     System.out.println("SENDING....");
+    retract()
     SenderUtil.sendToQueue(new AddToUsergroup($sessionId, $username, 'premiumcustomergroup'), "targeting");
 end
 
-rule "Customer is not premium if his average purchase in the last month is < 200$ and is from Bulgaria and visited the promo page"
+rule "Customer is not premium if his average purchase in the last month is < 70$ and is from Bulgaria and visited the careers page"
 when
     OrderPlacedEvent($sessionId : sessionId, $username : username)
-    CmsPageViewedEvent(username == $username, url == '/promo')
+    CmsPageViewedEvent(username == $username, url == '/about/careers')
     AddressUpdatedEvent(username == $username, countryCode == 'bg')
-    Number($d : doubleValue < 200)
+    Number($d : doubleValue < 70)
     from
         accumulate(
-            OrderPlacedEvent(username == $username)
+            OrderPlacedEvent(username == $username, $total : total)
             over window:time(30d),
-            average(1))
+            average($total))
 then
-    System.out.println("the customer " + $username + " is not premium because his average purchase for the last month is " + $d + " and is from Bulgaria and visited the promo page");
+    System.out.println("the customer " + $username + " is not premium because his average purchase for the last month is " + $d + " and is from Bulgaria and visited the careers page");
     System.out.println("SENDING....");
     SenderUtil.sendToQueue(new RemoveFromUsergroup($sessionId, $username, 'premiumcustomergroup'), "targeting");
 end
