@@ -23,7 +23,6 @@ when
 then
     System.out.println("the customer " + $username + " is premium because his average purchase for the last month is " + $d + " and is from Bulgaria and visited the careers page");
     System.out.println("SENDING....");
-    retract()
     SenderUtil.sendToQueue(new AddToUsergroup($sessionId, $username, 'premiumcustomergroup'), "targeting");
 end
 
