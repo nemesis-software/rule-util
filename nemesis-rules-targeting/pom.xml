@@ -21,7 +21,7 @@
         </parent>-->
     <groupId>com.nemesis.rules</groupId>
     <artifactId>nemesis-rules-targeting</artifactId>
-    <version>1.5.3.BUILD-SNAPSHOT</version>
+    <version>1.5.2.1.BUILD-SNAPSHOT</version>
     <packaging>kjar</packaging>
 
     <name>Nemesis Targeting Rules</name>
