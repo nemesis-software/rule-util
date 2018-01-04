@@ -16,7 +16,7 @@
     <parent>
         <groupId>com.nemesis</groupId>
         <artifactId>bom</artifactId>
-        <version>1.5.4.BUILD-SNAPSHOT</version>
+        <version>1.5.3.RELEASE</version>
     </parent>
 
     <groupId>com.nemesis</groupId>
@@ -55,4 +55,8 @@
         <proguard.maven.plugin.skip>true</proguard.maven.plugin.skip>
         <maven-findbugs-plugin.skip>true</maven-findbugs-plugin.skip>
     </properties>
+
+  <scm>
+    <tag>1.5.3.RELEASE</tag>
+  </scm>
 </project>
