@@ -30,6 +30,12 @@
         <module>nemesis-rules-targeting</module>
     </modules>
 
+    <scm>
+        <connection>scm:git:git@github.com:nemesis-software/nemesis-rules.git</connection>
+        <developerConnection>scm:git:git@github.com:nemesis-software/nemesis-rules.git</developerConnection>
+        <url>https://github.com/nemesis-software/nemesis-rules.git</url>
+        <tag>master</tag>
+    </scm>
     <distributionManagement>
         <site>
             <id>nemesis-docs</id>
