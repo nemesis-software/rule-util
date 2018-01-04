@@ -13,16 +13,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <!--    <parent>
+    <parent>
             <groupId>com.nemesis</groupId>
             <artifactId>rules</artifactId>
             <version>1.5.2.BUILD-SNAPSHOT</version>
             <relativePath>../pom.xml</relativePath>
-        </parent>-->
+    </parent>
     <groupId>com.nemesis.rules</groupId>
     <artifactId>nemesis-rules-targeting</artifactId>
-    <version>1.5.3.BUILD-SNAPSHOT</version>
-    <packaging>kjar</packaging>
+    <packaging>jar</packaging>
 
     <name>Nemesis Targeting Rules</name>
     <url>http://docs.nemesis.io/rules/targeting/</url>
@@ -129,12 +128,6 @@
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.kie</groupId>
-                <artifactId>kie-maven-plugin</artifactId>
-                <version>${drools.version}</version>
-                <extensions>true</extensions>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
