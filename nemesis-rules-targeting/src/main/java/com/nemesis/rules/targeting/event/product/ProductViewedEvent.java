@@ -27,14 +27,18 @@ public class ProductViewedEvent extends AbstractProductEvent {
 
     public ProductViewedEvent(String sessionId, String username, String productCode, String[] categoryCodes) {
         super(sessionId, username, productCode);
-        this.categoryCodes = categoryCodes;
+        if (categoryCodes != null) {
+            this.categoryCodes = categoryCodes.clone();
+        }
     }
 
     public String[] getCategoryCodes() {
-        return categoryCodes;
+        return categoryCodes != null ? categoryCodes.clone() : null;
     }
 
     public void setCategoryCodes(String[] categoryCodes) {
-        this.categoryCodes = categoryCodes;
+        if (categoryCodes != null) {
+            this.categoryCodes = categoryCodes.clone();
+        }
     }
 }
