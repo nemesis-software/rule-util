@@ -10,8 +10,7 @@ rule "Customer has a boy child if he/she visits > 5 boy-related pages during las
 	when
 		CustomerLoggedInEvent( $username : username != "anonymous" )
 		CategoryViewedEvent( $sessionId : sessionId, username == $username )
-		not (AddToUsergroup( sessionId == $sessionId , username == $username , usergroup == "hasaboycustomergroup" ))
-		Number( $d : doubleValue() > 5 ) from accumulate ( CategoryViewedEvent( sessionId == $sessionId , username == $username , categoryCode == "boys" || superCategories contains "boys" ) over window:time (3m),
+		Number( $d : doubleValue() > 1 ) from accumulate ( CategoryViewedEvent( sessionId == $sessionId , username == $username , categoryCode == "boys" || superCategories contains "boys" ) over window:time (3m),
 			count(1))
     then
         System.out.println("the customer " + $username + " has a boy because he visited " + $d + " times boy-related pages within last 180 seconds.");
