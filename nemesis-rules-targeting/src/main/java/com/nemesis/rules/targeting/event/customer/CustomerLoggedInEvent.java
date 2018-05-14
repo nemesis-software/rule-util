@@ -29,14 +29,18 @@ public class CustomerLoggedInEvent extends AbstractEvent {
 
     public CustomerLoggedInEvent(String sessionId, String username, String[] usergroups) {
         super(sessionId, username);
-        this.usergroups = usergroups;
+        if (usergroups != null) {
+            this.usergroups = usergroups.clone();
+        }
     }
 
     public String[] getUsergroups() {
-        return usergroups;
+        return usergroups != null ? usergroups.clone() : null;
     }
 
     public void setUsergroups(String[] usergroups) {
-        this.usergroups = usergroups;
+        if (usergroups != null) {
+            this.usergroups = usergroups.clone();
+        }
     }
 }

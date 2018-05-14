@@ -14,16 +14,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <!--    <parent>
-            <groupId>com.nemesis</groupId>
-            <artifactId>rules</artifactId>
-            <version>1.5.2.BUILD-SNAPSHOT</version>
-            <relativePath>../pom.xml</relativePath>
-        </parent>-->
+
     <groupId>com.nemesis.rules</groupId>
     <artifactId>nemesis-rules-targeting</artifactId>
     <version>2.0.0.BUILD-SNAPSHOT</version>
-    <packaging>kjar</packaging>
+    <packaging>jar</packaging>
 
     <name>Nemesis Targeting Rules</name>
     <url>http://docs.nemesis.io/rules/targeting/</url>
@@ -46,10 +41,64 @@
             <url>https://repository.nemesis.io/artifactory/libs-snapshot-local</url>
         </snapshotRepository>
     </distributionManagement>
+    <scm>
+        <connection>scm:git:git@github.com:nemesis-software/nemesis-rules.git</connection>
+        <developerConnection>scm:git:git@github.com:nemesis-software/nemesis-rules.git</developerConnection>
+        <url>https://github.com/nemesis-software/nemesis-rules.git</url>
+        <tag>1.5.1.RELEASE</tag>
+    </scm>
+
 
     <properties>
         <drools.version>6.5.0.Final</drools.version>
+        <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.rabbitmq</groupId>
+            <artifactId>amqp-client</artifactId>
+            <version>4.0.2</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.kie</groupId>
+            <artifactId>kie-api</artifactId>
+            <version>${drools.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.9.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.kie.server</groupId>
+            <artifactId>kie-server-api</artifactId>
+            <version>7.7.0.Final</version>
+        </dependency>
+    </dependencies>
 
     <!--
         <dependencyManagement>
@@ -88,49 +137,20 @@
         </repository>
     </repositories>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.rabbitmq</groupId>
-            <artifactId>amqp-client</artifactId>
-            <version>4.0.2</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-api</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.5</version>
-        </dependency>
-        <dependency>
-            <groupId>org.kie</groupId>
-            <artifactId>kie-api</artifactId>
-            <version>${drools.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-api</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
-
     <build>
         <plugins>
             <plugin>
-                <groupId>org.kie</groupId>
-                <artifactId>kie-maven-plugin</artifactId>
-                <version>${drools.version}</version>
-                <extensions>true</extensions>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>${maven-release-plugin.version}</version>
+                <configuration>
+                    <releaseProfiles>apache-release</releaseProfiles>
+                    <useReleaseProfile>false</useReleaseProfile>
+                    <goals>deploy</goals>
+                    <scmCommentPrefix>[maven-release-plugin][ci skip]</scmCommentPrefix>
+                    <localCheckout>true</localCheckout>
+                    <tagNameFormat>v@{project.version}</tagNameFormat>
+                </configuration>
             </plugin>
         </plugins>
     </build>

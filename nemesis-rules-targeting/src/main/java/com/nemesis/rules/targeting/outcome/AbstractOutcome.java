@@ -27,6 +27,8 @@ public class AbstractOutcome implements Serializable {
     @org.kie.api.definition.type.Label(value = "Username")
     private String username;
 
+    private boolean processed;
+
     public AbstractOutcome() {
     }
 
@@ -49,5 +51,13 @@ public class AbstractOutcome implements Serializable {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public boolean isProcessed() {
+        return processed;
+    }
+
+    public void setProcessed(boolean processed) {
+        this.processed = processed;
     }
 }
