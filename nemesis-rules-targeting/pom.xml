@@ -14,7 +14,7 @@
     <modelVersion>4.0.0</modelVersion>
 
 
-    <groupId>com.nemesis.rules</groupId>
+    <groupId>io.nemesis.rules</groupId>
     <artifactId>nemesis-rules-targeting</artifactId>
     <version>2.1.0.BUILD-SNAPSHOT</version>
     <packaging>jar</packaging>
@@ -59,7 +59,9 @@
 
     <properties>
         <drools.version>6.5.0.Final</drools.version>
+        <java.version>1.8</java.version>
         <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
     </properties>
 
     <dependencies>
@@ -158,6 +160,18 @@
                     <scmCommentPrefix>[maven-release-plugin][ci skip]</scmCommentPrefix>
                     <localCheckout>true</localCheckout>
                     <tagNameFormat>v@{project.version}</tagNameFormat>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <!--failOnWarning>true</failOnWarning-->
+                    <showDeprecation>true</showDeprecation>
+                    <useIncrementalCompilation>false</useIncrementalCompilation>
                 </configuration>
             </plugin>
         </plugins>

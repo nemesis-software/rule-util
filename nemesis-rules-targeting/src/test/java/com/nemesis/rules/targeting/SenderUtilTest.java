@@ -11,6 +11,7 @@
  */
 package com.nemesis.rules.targeting;
 
+import io.nemesis.rules.targeting.SenderUtil;
 import org.junit.Ignore;
 import org.junit.Test;
 
