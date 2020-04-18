@@ -16,7 +16,7 @@
 
     <groupId>io.nemesis.rules</groupId>
     <artifactId>nemesis-rules-targeting</artifactId>
-    <version>2.1.0.BUILD-SNAPSHOT</version>
+    <version>2.1.0.RELEASE</version>
     <packaging>jar</packaging>
 
     <name>Nemesis Targeting Rules</name>
@@ -53,7 +53,7 @@
         <connection>scm:git:git@github.com:nemesis-software/nemesis-rules.git</connection>
         <developerConnection>scm:git:git@github.com:nemesis-software/nemesis-rules.git</developerConnection>
         <url>https://github.com/nemesis-software/nemesis-rules.git</url>
-        <tag>1.5.1.RELEASE</tag>
+        <tag>2.1.0.RELEASE</tag>
     </scm>
 
 
