@@ -22,6 +22,15 @@
     <name>Nemesis Targeting Rules</name>
     <url>http://docs.nemesis.io/rules/targeting/</url>
 
+    <licenses>
+        <license>
+            <name>Nemesis Software Commercial License</name>
+            <url>http://www.nemesis.io/legal/license</url>
+            <distribution>repo</distribution>
+            <comments>This software is proprietary software.</comments>
+        </license>
+    </licenses>
+
     <distributionManagement>
         <!--site>
             <id>nemesis-docs</id>
